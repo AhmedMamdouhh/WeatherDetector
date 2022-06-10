@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_weather_details_background">
+
+        <!-- location + search -->
+        <RelativeLayout
+            android:id="@+id/rl_weather_details_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_margin="@dimen/dp8w"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- location -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/weather_details_location_title"
+                android:textColor="@color/colorOnPrimary"
+                android:padding="@dimen/dp8w"
+                android:drawablePadding="@dimen/dp8w"
+                android:textSize="@dimen/sp14"
+                app:drawableStartCompat="@drawable/ic_location" />
+            <!-- search -->
+
+
+        </RelativeLayout>
+
+        <!-- Current weather -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_weather_details_current_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar"
+            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/gl_weather_details_vertical"
+            android:layout_marginTop="@dimen/dp8w"
+            android:layout_marginStart="@dimen/dp16w"
+            app:cardCornerRadius="@dimen/dp16w"
+            app:cardElevation="@dimen/dp4w">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_weather_details_current"
+                android:orientation="vertical">
+
+                <!-- current date -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/dp16w"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weather_details_current_date"
+                        android:textSize="@dimen/sp14"
+                        android:textColor="@color/colorOnPrimary"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_weather_cloud"/>
+
+                </LinearLayout>
+
+                <!-- weather description -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp19"
+                    android:text="@string/weather_details_current_description"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <!-- line -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorOnPrimary"
+                    android:layout_margin="@dimen/dp32w"/>
+
+                <!-- wind -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_details_wind_title"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp12"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_details_wind_value"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp13"/>
+
+                <!-- humidity -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp16w"
+                    android:text="@string/weather_details_humidity_title"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp12"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_details_humidity_value"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp13"/>
+
+                <!-- pressure -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp16w"
+                    android:text="@string/weather_details_pressure_title"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp12"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_details_pressure_value"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp13"/>
+
+                <!-- line -->
+                <View
+                    android:layout_width="@dimen/dp25w"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorOnPrimary"
+                    android:layout_margin="@dimen/dp32w"/>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Temp -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_weather_details_temp_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar"
+            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_temp_horizontal"
+            android:layout_marginTop="@dimen/dp8w"
+            android:layout_marginStart="@dimen/dp16w"
+            app:cardCornerRadius="@dimen/dp16w"
+            app:cardElevation="@dimen/dp4w">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/gradient_weather_details_temp"
+                android:orientation="vertical">
+
+                <!-- temp -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:layout_marginEnd="@dimen/dp16w"
+                    android:layout_marginBottom="@dimen/dp8w"
+                    android:text="@string/weather_details_temp_title"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp18"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:layout_marginEnd="@dimen/dp16w"
+                    android:text="@string/weather_details_temp_value"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp22"/>
+
+                <!-- line -->
+                <View
+                    android:layout_width="@dimen/dp25w"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorOnPrimary"
+                    android:layout_marginTop="@dimen/dp32w"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:layout_marginEnd="@dimen/dp16w"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Air quality -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_weather_details_air_quality_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gl_weather_details_temp_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_horizontal"
+            android:layout_marginTop="@dimen/dp8w"
+            android:layout_marginStart="@dimen/dp16w"
+            app:cardCornerRadius="@dimen/dp16w"
+            app:cardElevation="@dimen/dp4w">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_weather_details_current"
+                android:orientation="vertical">
+
+                <!-- air quality -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp16w"
+                    android:text="@string/weather_details_air_quality_title"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp20"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_details_air_quality_value"
+                    android:layout_marginStart="@dimen/dp16w"
+                    android:layout_marginEnd="@dimen/dp16w"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp25"/>
+
+                <!-- line -->
+                <View
+                    android:layout_width="@dimen/dp25w"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorOnPrimary"
+                    android:layout_margin="@dimen/dp32w"/>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- guidelines -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_weather_details_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_weather_details_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_weather_details_temp_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

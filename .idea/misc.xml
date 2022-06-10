@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_main_background.xml" value="0.26205128205128203" />
         <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_temp_card_background.xml" value="0.26205128205128203" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_background.xml" value="0.26205128205128203" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_current.xml" value="0.26205128205128203" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_temp.xml" value="0.26205128205128203" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/layout/fragment_weather_details.xml" value="0.176" />
       </map>
     </option>
   </component>

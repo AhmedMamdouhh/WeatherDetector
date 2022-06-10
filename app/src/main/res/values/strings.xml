@@ -3,5 +3,21 @@
 
 
 
+    <!-- Weather details -->
+    <string name="weather_details_location_title">Egypt</string>
+    <string name="weather_details_current_date">Today,</string>
+    <string name="weather_details_current_date_day">10 Jun</string>
+    <string name="weather_details_current_description">clear sky</string>
+    <string name="weather_details_wind_title">Wind</string>
+    <string name="weather_details_wind_value">10 km/h</string>
+    <string name="weather_details_humidity_title">Humidity</string>
+    <string name="weather_details_humidity_value">54%</string>
+    <string name="weather_details_pressure_title">Pressure</string>
+    <string name="weather_details_pressure_value">1000 hPa</string>
+    <string name="weather_details_temp_title">Temp</string>
+    <string name="weather_details_temp_value">28 C</string>
+    <string name="weather_details_air_quality_title">Air \nQuality</string>
+    <string name="weather_details_air_quality_value">55</string>
+
 
 </resources>
