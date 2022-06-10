@@ -1,4 +1,4 @@
-package com.musala.weatherdetector.data.model
+package com.musala.weatherdetector.data.model.weather
 
 data class Weather(
     val description: String,

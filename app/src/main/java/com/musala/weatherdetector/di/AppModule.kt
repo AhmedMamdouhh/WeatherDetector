@@ -1,6 +1,7 @@
 package com.musala.weatherdetector.di
 
 import com.musala.weatherdetector.BuildConfig
+import com.musala.weatherdetector.data.remote.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +35,7 @@ object AppModule {
         .addInterceptor(httpLoggingInterceptor)
         .build()
 
+
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit
@@ -42,5 +44,10 @@ object AppModule {
         .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .build()
+
+    @Singleton
+    @Provides
+    fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+
 
 }

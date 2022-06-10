@@ -1,6 +1,6 @@
-package com.musala.weatherdetector.domain.model.city
+package com.musala.weatherdetector.data.model.city
 
-data class CityItem(
+data class CityDTO(
     val country: String,
     val lat: Double,
     val lon: Double,
