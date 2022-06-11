@@ -18,6 +18,25 @@
     <string name="weather_details_temp_value">28 C</string>
     <string name="weather_details_air_quality_title">Air \nQuality</string>
     <string name="weather_details_air_quality_value">55</string>
+    <string name="weather_details_request_new_permission">If you enable your location you can see your current location weather details
+        , otherwise you can search for any country you want </string>
+    <string name="weather_details_request_new_permission_title">New Permission</string>
+    <string name="weather_details_request_new_permission_ok">Enable location</string>
+    <string name="weather_details_request_new_permission_no">No</string>
+    <string name="weather_details_no_current_location_found">As we can\'t reach your current location,
+        you must search for any country to see the weather details.</string>
 
+
+    <!--Errors -->
+    <!-- Weather details -->
+    <string name="error_weather_details_location_access_denied">Location access is required to get your current weather details,
+        or you can search by your country name</string>
+    <string name="error_weather_details_enable_gps">Please turn on your location,
+        or you can search by your country name</string>
+
+    <!-- base errors-->
+    <string name="error_no_connection">Oops , there\'s no Network connection</string>
+    <string name="error_message_title">Error!</string>
+    <string name="success_message_title">Success</string>
 
 </resources>

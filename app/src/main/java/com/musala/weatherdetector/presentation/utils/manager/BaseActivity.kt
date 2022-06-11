@@ -1,12 +1,24 @@
 package com.musala.weatherdetector.presentation.utils.manager
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.musala.weatherdetector.R
+import com.musala.weatherdetector.presentation.response.error.ErrorSheet
+import com.musala.weatherdetector.presentation.response.no_connection.NoConnectionSheet
+import com.musala.weatherdetector.presentation.response.success.SuccessDialog
+import com.musala.weatherdetector.presentation.utils.Constants
 import com.musala.weatherdetector.presentation.utils.EventObserver
+import com.musala.weatherdetector.presentation.utils.manager.BaseActivityViewModel
+import com.musala.weatherdetector.presentation.utils.manager.ResponseManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +35,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        initializeProgress()
         observeResponse()
         observeLoading()
         observeSuccess()
@@ -36,38 +48,38 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun observeHideLoading() {
         baseActivityViewModel.observeHideLoading.observe(this,
             EventObserver {
-
+                hideProgress()
             })
     }
 
     private fun observeNoConnection() {
         baseActivityViewModel.observeNoConnection.observe(this,
             EventObserver {
-
-
+                hideProgress()
+                noConnection()
             })
     }
 
     private fun observeFailed() {
         baseActivityViewModel.observeFailed.observe(this,
             EventObserver { errorMessage ->
-
-
+                hideProgress()
+                failedMessage(errorMessage)
             })
     }
 
     private fun observeSuccess() {
         baseActivityViewModel.observeSuccess.observe(this,
             EventObserver { successMessage ->
-
-
+                hideProgress()
+                successMessage(successMessage)
             })
     }
 
     private fun observeLoading() {
         baseActivityViewModel.observeLoading.observe(this,
             EventObserver {
-
+                showProgress()
             })
     }
 
@@ -82,6 +94,50 @@ abstract class BaseActivity : AppCompatActivity() {
         })
     }
 
+    //Snack bar :
+    private fun successMessage(message: String?) {
+        val successSheet = SuccessDialog()
+        val bundle = Bundle()
+        bundle.putString(Constants.MESSAGE, message)
+        successSheet.arguments = bundle
+
+        successSheet.show(supportFragmentManager, Constants.SUCCESS_SHEET)
+    }
+
+    private fun failedMessage(message: String?) {
+        val errorSheet = ErrorSheet()
+        val bundle = Bundle()
+        bundle.putString(Constants.MESSAGE, message)
+        errorSheet.arguments = bundle
+
+        errorSheet.show(supportFragmentManager, Constants.ERROR_SHEET)
+    }
+
+    private fun noConnection() {
+        NoConnectionSheet().show(supportFragmentManager, Constants.NO_CONNECTION_SHEET)
+    }
+
+    @SuppressLint("InflateParams")
+    private fun initializeProgress() {
+        loadingBar = Dialog(this, R.style.FullScreenDialog)
+        loadingBar!!.setCancelable(false)
+        loadingBar!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val inflater = LayoutInflater.from(this)
+        val loadingView = inflater.inflate(R.layout.layout_loader, null)
+        loadingBar!!.setContentView(loadingView)
+        loadingBar!!.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.parseColor("#0effffff"))
+        )
+    }
+
+
+    private fun showProgress() {
+        if (loadingBar != null && !this.isFinishing) loadingBar!!.show()
+    }
+
+    private fun hideProgress() {
+        if (loadingBar != null && loadingBar!!.isShowing && !this.isFinishing) loadingBar!!.dismiss()
+    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
