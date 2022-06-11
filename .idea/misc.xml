@@ -8,7 +8,8 @@
         <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_background.xml" value="0.26205128205128203" />
         <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_current.xml" value="0.26205128205128203" />
         <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/drawable/gradient_weather_details_temp.xml" value="0.26205128205128203" />
-        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/layout/fragment_weather_details.xml" value="0.176" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
+        <entry key="..\:/AndroidWorkPlace/WeatherDetector/app/src/main/res/layout/fragment_weather_details.xml" value="0.152" />
       </map>
     </option>
   </component>

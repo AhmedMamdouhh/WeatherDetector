@@ -6,5 +6,5 @@ import retrofit2.Response
 interface CityGateway {
     suspend fun requestCityLocation(
         cityName: String
-    ): Response<CityDTO>
+    ): Response<List<CityDTO>>
 }

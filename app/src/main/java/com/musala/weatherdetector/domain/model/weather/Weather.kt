@@ -3,6 +3,7 @@ package com.musala.weatherdetector.domain.model.weather
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.musala.weatherdetector.BR
+import com.musala.weatherdetector.data.model.weather.Daily
 
 class Weather : BaseObservable() {
 

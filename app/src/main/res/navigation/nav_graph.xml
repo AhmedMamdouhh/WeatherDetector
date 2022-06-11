@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/weatherDetailsFragment"
+    android:id="@+id/nav_graph">
+
+    <!-- Weather details -->
+    <fragment
+        android:id="@+id/weatherDetailsFragment"
+        android:name="com.musala.weatherdetector.presentation.ui.weather_details.WeatherDetailsFragment"
+        android:label="WeatherDetailsFragment" />
+
+</navigation>

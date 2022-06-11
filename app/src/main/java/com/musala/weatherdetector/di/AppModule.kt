@@ -2,6 +2,7 @@ package com.musala.weatherdetector.di
 
 import com.musala.weatherdetector.BuildConfig
 import com.musala.weatherdetector.data.remote.Api
+import com.musala.weatherdetector.presentation.utils.manager.ResponseManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,5 +50,8 @@ object AppModule {
     @Provides
     fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 
+    @Singleton
+    @Provides
+    fun provideResponseManager() = ResponseManager()
 
 }

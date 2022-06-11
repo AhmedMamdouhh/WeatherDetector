@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.musala.weatherdetector">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
+        android:name=".presentation.utils.manager.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherDetector">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".presentation.utils.manager.MainActivity"
+            android:exported="true" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

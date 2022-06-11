@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-
-
+        <variable
+            name="weatherObject"
+            type="com.musala.weatherdetector.domain.model.weather.Weather" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:layout_margin="@dimen/dp8w"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <!-- location -->
@@ -31,10 +33,11 @@
                 android:drawablePadding="@dimen/dp8w"
                 android:gravity="center"
                 android:padding="@dimen/dp8w"
-                android:text="@string/weather_details_location_title"
+                android:text="@{weatherObject.weatherCity}"
                 android:textColor="@color/colorOnPrimary"
                 android:textSize="@dimen/sp14"
-                app:drawableStartCompat="@drawable/ic_location" />
+                app:drawableStartCompat="@drawable/ic_location"
+                tools:text="@string/weather_details_location_title" />
             <!-- search -->
 
 
@@ -45,14 +48,14 @@
             android:id="@+id/cv_weather_details_current_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar"
+            android:layout_marginStart="@dimen/dp16w"
+            android:layout_marginTop="@dimen/dp16w"
+            app:cardCornerRadius="@dimen/dp16w"
+            app:cardElevation="@dimen/dp4w"
             app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_horizontal"
             app:layout_constraintEnd_toStartOf="@+id/gl_weather_details_vertical"
-            android:layout_marginTop="@dimen/dp16w"
-            android:layout_marginStart="@dimen/dp16w"
-            app:cardCornerRadius="@dimen/dp16w"
-            app:cardElevation="@dimen/dp4w">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar">
 
             <LinearLayout
 
@@ -69,20 +72,21 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:gravity="bottom"
                         android:layout_marginStart="@dimen/dp16w"
-                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/weather_details_current_date"
-                        android:textSize="@dimen/sp14"
-                        android:textColor="@color/colorOnPrimary"/>
+                        android:textColor="@color/colorOnPrimary"
+                        android:textSize="@dimen/sp12" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_weather_cloud"/>
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_weather_cloud" />
 
                 </LinearLayout>
 
@@ -90,80 +94,83 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp19"
-                    android:text="@string/weather_details_current_description"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textStyle="bold"/>
+                    android:text="@string/weather_details_current_description"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp30"
+                    android:textStyle="bold" />
 
                 <!-- line -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/colorOnPrimary"
-                    android:layout_margin="@dimen/dp32w"/>
+                    android:layout_margin="@dimen/dp32w"
+                    android:background="@color/colorOnPrimary" />
 
                 <!-- wind -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weather_details_wind_title"
                     android:layout_marginStart="@dimen/dp16w"
+                    android:text="@string/weather_details_wind_title"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp12"/>
+                    android:textSize="@dimen/sp12" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weather_details_wind_value"
                     android:layout_marginStart="@dimen/dp16w"
+                    android:text="@string/weather_details_wind_value"
                     android:textColor="@color/colorOnPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp13"/>
+                    android:textSize="@dimen/sp13"
+                    android:textStyle="bold" />
 
                 <!-- humidity -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp16w"
                     android:layout_marginTop="@dimen/dp16w"
                     android:text="@string/weather_details_humidity_title"
-                    android:layout_marginStart="@dimen/dp16w"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp12"/>
+                    android:textSize="@dimen/sp12" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weather_details_humidity_value"
                     android:layout_marginStart="@dimen/dp16w"
+                    android:text="@string/weather_details_humidity_value"
                     android:textColor="@color/colorOnPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp13"/>
+                    android:textSize="@dimen/sp13"
+                    android:textStyle="bold" />
 
                 <!-- pressure -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp16w"
                     android:layout_marginTop="@dimen/dp16w"
                     android:text="@string/weather_details_pressure_title"
-                    android:layout_marginStart="@dimen/dp16w"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp12"/>
+                    android:textSize="@dimen/sp12" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weather_details_pressure_value"
                     android:layout_marginStart="@dimen/dp16w"
+                    android:text="@string/weather_details_pressure_value"
                     android:textColor="@color/colorOnPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp13"/>
+                    android:textSize="@dimen/sp13"
+                    android:textStyle="bold" />
 
                 <!-- line -->
                 <View
                     android:layout_width="@dimen/dp25w"
                     android:layout_height="0.5dp"
                     android:layout_gravity="center"
-                    android:background="@color/colorOnPrimary"
-                    android:layout_margin="@dimen/dp32w"/>
+                    android:layout_margin="@dimen/dp32w"
+                    android:background="@color/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -175,21 +182,22 @@
             android:id="@+id/cv_weather_details_temp_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar"
-            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_temp_horizontal"
-            android:layout_marginTop="@dimen/dp16w"
             android:layout_marginStart="@dimen/dp16w"
+            android:layout_marginTop="@dimen/dp16w"
+            android:layout_marginEnd="@dimen/dp16w"
             app:cardCornerRadius="@dimen/dp16w"
-            app:cardElevation="@dimen/dp4w">
+            app:cardElevation="@dimen/dp4w"
+            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_temp_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
+            app:layout_constraintTop_toBottomOf="@+id/rl_weather_details_bar">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/gradient_weather_details_temp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <!-- temp -->
@@ -201,7 +209,8 @@
                     android:layout_marginBottom="@dimen/dp8w"
                     android:text="@string/weather_details_temp_title"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp18"/>
+                    android:textSize="@dimen/sp18" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -209,18 +218,18 @@
                     android:layout_marginEnd="@dimen/dp16w"
                     android:text="@string/weather_details_temp_value"
                     android:textColor="@color/colorOnPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp22"/>
+                    android:textSize="@dimen/sp22"
+                    android:textStyle="bold" />
 
                 <!-- line -->
                 <View
                     android:layout_width="@dimen/dp25w"
                     android:layout_height="0.5dp"
                     android:layout_gravity="center"
-                    android:background="@color/colorOnPrimary"
-                    android:layout_marginTop="@dimen/dp32w"
                     android:layout_marginStart="@dimen/dp16w"
-                    android:layout_marginEnd="@dimen/dp16w"/>
+                    android:layout_marginTop="@dimen/dp32w"
+                    android:layout_marginEnd="@dimen/dp16w"
+                    android:background="@color/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -231,14 +240,15 @@
             android:id="@+id/cv_weather_details_air_quality_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gl_weather_details_temp_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_horizontal"
-            android:layout_marginTop="@dimen/dp16w"
             android:layout_marginStart="@dimen/dp16w"
+            android:layout_marginTop="@dimen/dp16w"
+            android:layout_marginEnd="@dimen/dp16w"
             app:cardCornerRadius="@dimen/dp16w"
-            app:cardElevation="@dimen/dp4w">
+            app:cardElevation="@dimen/dp4w"
+            app:layout_constraintBottom_toTopOf="@+id/gl_weather_details_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cv_weather_details_current_container"
+            app:layout_constraintTop_toBottomOf="@+id/gl_weather_details_temp_horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -253,24 +263,25 @@
                     android:layout_margin="@dimen/dp16w"
                     android:text="@string/weather_details_air_quality_title"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp20"/>
+                    android:textSize="@dimen/sp20" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weather_details_air_quality_value"
                     android:layout_marginStart="@dimen/dp16w"
                     android:layout_marginEnd="@dimen/dp16w"
+                    android:text="@string/weather_details_air_quality_value"
                     android:textColor="@color/colorOnPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp25"/>
+                    android:textSize="@dimen/sp25"
+                    android:textStyle="bold" />
 
                 <!-- line -->
                 <View
                     android:layout_width="@dimen/dp25w"
                     android:layout_height="0.5dp"
                     android:layout_gravity="center"
-                    android:background="@color/colorOnPrimary"
-                    android:layout_margin="@dimen/dp32w"/>
+                    android:layout_margin="@dimen/dp32w"
+                    android:background="@color/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -284,12 +295,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_weather_details_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.50" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_weather_details_temp_horizontal"
             android:layout_width="wrap_content"

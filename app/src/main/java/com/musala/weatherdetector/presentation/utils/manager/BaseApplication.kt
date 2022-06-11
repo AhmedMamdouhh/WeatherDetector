@@ -1,4 +1,4 @@
-package com.musala.weatherdetector.presentation.manager
+package com.musala.weatherdetector.presentation.utils.manager
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

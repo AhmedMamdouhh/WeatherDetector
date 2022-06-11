@@ -16,7 +16,7 @@ interface Api {
         searchKeyWord: String,
         @Query(Constants.API_KEY)
         apiKey: String = BuildConfig.API_KEY
-    ): Response<CityDTO>
+    ): Response<List<CityDTO>>
 
     //Get
     @GET("data/2.5/weather")
