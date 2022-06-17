@@ -21,14 +21,14 @@ class WeatherDaily : BaseObservable() {
         }
 
     @get:Bindable
-    var weatherDailyMin: Double = 0.0
+    var weatherDailyMin: Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.weatherDailyMin)
         }
 
     @get:Bindable
-    var weatherDailyMax:  Double = 0.0
+    var weatherDailyMax:  Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.weatherDailyMax)

@@ -64,7 +64,7 @@
             android:id="@+id/cv_weather_details_current_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginStart="@dimen/dp16w"
             android:layout_marginTop="@dimen/dp16w"
             app:cardCornerRadius="@dimen/dp16w"
@@ -113,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/weather_details_current_description"
+                    android:text="@{weatherObject.weatherDescription}"
+                    tools:text="@string/weather_details_current_description"
                     android:textColor="@color/colorOnPrimary"
                     android:textSize="@dimen/sp30"
                     android:textStyle="bold" />
@@ -138,9 +139,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp16w"
-                    android:text="@string/weather_details_wind_value"
+                    tools:text="@string/weather_details_wind_value"
+                    android:text="@{@string/weather_details_wind_value(String.valueOf(weatherObject.weatherWindSpeed))}"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp13"
+                    android:textSize="@dimen/sp17"
                     android:textStyle="bold" />
 
                 <!-- humidity -->
@@ -157,9 +159,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp16w"
-                    android:text="@string/weather_details_humidity_value"
+                    tools:text="@string/weather_details_humidity_value"
+                    android:text="@{@string/weather_details_humidity_value(String.valueOf(weatherObject.weatherHumidity))}"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp13"
+                    android:textSize="@dimen/sp17"
                     android:textStyle="bold" />
 
                 <!-- pressure -->
@@ -176,9 +179,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp16w"
-                    android:text="@string/weather_details_pressure_value"
+                    tools:text="@string/weather_details_pressure_value"
+                    android:text="@{@string/weather_details_pressure_value(String.valueOf(weatherObject.weatherPressure))}"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp13"
+                    android:textSize="@dimen/sp17"
                     android:textStyle="bold" />
 
                 <!-- line -->
@@ -198,7 +202,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_weather_details_temp_container"
             android:layout_width="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/dp16w"
             android:layout_marginTop="@dimen/dp16w"
@@ -234,9 +238,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp16w"
                     android:layout_marginEnd="@dimen/dp16w"
-                    android:text="@string/weather_details_temp_value"
+                    tools:text="@string/weather_details_temp_value"
+                    android:text="@{@string/weather_details_temp_value(String.valueOf(weatherObject.weatherTemperature))}"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp22"
+                    android:textSize="@dimen/sp20"
                     android:textStyle="bold" />
 
                 <!-- line -->
@@ -258,7 +263,7 @@
             android:id="@+id/cv_weather_details_air_quality_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginStart="@dimen/dp16w"
             android:layout_marginTop="@dimen/dp16w"
             android:layout_marginEnd="@dimen/dp16w"
@@ -276,11 +281,12 @@
                 android:orientation="vertical">
 
                 <!-- air quality -->
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp16w"
-                    android:text="@string/weather_details_air_quality_title"
+                    android:text="@string/weather_details_feels_like_title"
                     android:textColor="@color/colorOnPrimary"
                     android:textSize="@dimen/sp20" />
 
@@ -289,9 +295,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp16w"
                     android:layout_marginEnd="@dimen/dp16w"
-                    android:text="@string/weather_details_air_quality_value"
+                    tools:text="@string/weather_details_feels_like_value"
+                    android:text="@{weatherObject.weatherFeelsLike}"
                     android:textColor="@color/colorOnPrimary"
-                    android:textSize="@dimen/sp25"
+                    android:textSize="@dimen/sp30"
                     android:textStyle="bold" />
 
                 <!-- line -->
@@ -307,6 +314,50 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Daily -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_weather_details_daily_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp16w"
+            android:layout_marginTop="@dimen/dp32w"
+            android:layout_marginEnd="@dimen/dp16w"
+            android:layout_marginBottom="@dimen/dp32w"
+            app:cardCornerRadius="@dimen/dp16w"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_weather_details_current_container"
+            app:cardElevation="@dimen/dp4w" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_weather_details_current"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="@dimen/dp16w"
+                    android:text="@string/weather_daily_next_week"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textSize="@dimen/sp12" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_weather_details_daily_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_weather_daily"/>
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
         <!-- guidelines -->
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_weather_details_horizontal"
@@ -314,14 +365,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_weather_details_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.50" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_weather_details_temp_horizontal"
             android:layout_width="wrap_content"

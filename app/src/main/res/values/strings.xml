@@ -5,19 +5,19 @@
 
     <!-- Weather details -->
     <string name="weather_details_location_title">Egypt</string>
-    <string name="weather_details_current_date">Today,</string>
+    <string name="weather_details_current_date">Today</string>
     <string name="weather_details_current_date_day">10 Jun</string>
     <string name="weather_details_current_description">clear sky</string>
     <string name="weather_details_wind_title">Wind</string>
-    <string name="weather_details_wind_value">10 km/h</string>
+    <string name="weather_details_wind_value">%s km/h</string>
     <string name="weather_details_humidity_title">Humidity</string>
-    <string name="weather_details_humidity_value">54%</string>
+    <string name="weather_details_humidity_value">%1$s%%</string>
     <string name="weather_details_pressure_title">Pressure</string>
-    <string name="weather_details_pressure_value">1000 hPa</string>
+    <string name="weather_details_pressure_value">%s hPa</string>
     <string name="weather_details_temp_title">Temp</string>
-    <string name="weather_details_temp_value">28 C</string>
-    <string name="weather_details_air_quality_title">Air \nQuality</string>
-    <string name="weather_details_air_quality_value">55</string>
+    <string name="weather_details_temp_value">%s °C</string>
+    <string name="weather_details_feels_like_title">Feels \nLike</string>
+    <string name="weather_details_feels_like_value">55</string>
     <string name="weather_details_request_new_permission">If you enable your location you can see your current location weather details
         , otherwise you can search for any country you want </string>
     <string name="weather_details_request_new_permission_title">New Permission</string>
@@ -27,12 +27,20 @@
         you must search for any country to see the weather details.</string>
 
 
+    <!-- Weather Daily -->
+    <string name="weather_daily_next_week">Next week</string>
+    <string name="weather_daily_day">Sunday</string>
+    <string name="weather_daily_min_max">%s - %s °</string>
+
+
     <!--Errors -->
     <!-- Weather details -->
     <string name="error_weather_details_location_access_denied">Location access is required to get your current weather details,
         or you can search by your country name</string>
     <string name="error_weather_details_enable_gps">Please turn on your location,
         or you can search by your country name</string>
+    <string name="error_weather_details_gps_problem">Sorry there\'s a problem with your location ..
+        try to search about your country</string>
 
     <!-- base errors-->
     <string name="error_no_connection">Oops , there\'s no Network connection</string>

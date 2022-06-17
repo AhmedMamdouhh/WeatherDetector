@@ -19,7 +19,7 @@ interface Api {
     ): Response<List<CityDTO>>
 
     //Get
-    @GET("data/2.5/weather")
+    @GET("data/2.5/onecall")
     suspend fun getWeatherDetails(
         @Query(Constants.LATITUDE)
         latitude:Double,

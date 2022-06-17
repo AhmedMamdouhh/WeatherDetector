@@ -1,23 +1,23 @@
 package com.musala.weatherdetector.presentation.ui.weather_details
 
-import android.Manifest
+import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.musala.weatherdetector.databinding.FragmentWeatherDetailsBinding
-import com.musala.weatherdetector.domain.model.weather.Weather
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import com.musala.weatherdetector.R
+import com.musala.weatherdetector.databinding.FragmentWeatherDetailsBinding
+import com.musala.weatherdetector.presentation.ui.weather_daily.WeatherDailyAdapter
 import com.musala.weatherdetector.presentation.utils.manager.ResponseManager
 import javax.inject.Inject
-import android.content.DialogInterface
-import android.app.AlertDialog
-import android.view.View.GONE
 import com.musala.weatherdetector.presentation.utils.*
-import kotlinx.coroutines.currentCoroutineContext
 
 
 @AndroidEntryPoint
@@ -25,6 +25,7 @@ class WeatherDetailsFragment : Fragment() {
 
     private lateinit var weatherDetailsBinding: FragmentWeatherDetailsBinding
     private val weatherDetailsViewModel: WeatherDetailsViewModel by viewModels()
+    private lateinit var weatherDailyAdapter: WeatherDailyAdapter
 
     @Inject
     lateinit var responseManager: ResponseManager
@@ -37,20 +38,36 @@ class WeatherDetailsFragment : Fragment() {
 
         weatherDetailsBinding = FragmentWeatherDetailsBinding.inflate(inflater, container, false)
 
-        weatherDetailsBinding.weatherObject = Weather()
-        weatherDetailsViewModel.getCityLocation("Egypt")
-
         permissionCheck()
+        observeWeatherDetailsSuccess()
+
         return weatherDetailsBinding.root
+    }
+
+    private fun observeWeatherDetailsSuccess() {
+        weatherDetailsViewModel.observeWeatherDetailsSuccess.observe(
+            viewLifecycleOwner,
+            EventObserver { weather ->
+                weatherDetailsBinding.weatherObject = weather
+                weatherDailyAdapter = WeatherDailyAdapter(weather.weatherDaily)
+                weatherDetailsBinding.apply {
+                    rvWeatherDetailsDailyList.apply {
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
+                        adapter = weatherDailyAdapter
+                        recyclerAnimationExtension(this)
+                    }
+                }
+
+            })
     }
 
     fun permissionCheck() {
         if (checkForLocationPermission() == Constants.PERMISSION_GRANTED)
             if (isLocationEnabled()) {
-                showAndHideWeatherDetails(Constants.SHOW,Constants.HIDE)
+                showAndHideWeatherDetails(Constants.SHOW, Constants.HIDE)
                 getCurrentLocation()
-            }
-            else {
+            } else {
                 responseManager.failed(getString(R.string.error_weather_details_enable_gps))
                 showAndHideWeatherDetails(Constants.HIDE, Constants.SHOW)
             }
@@ -66,4 +83,22 @@ class WeatherDetailsFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation() {
+
+        val fusedLocationClient: FusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                try {
+                    weatherDetailsViewModel.getWeatherDetails(
+                        location!!.longitude,
+                        location.longitude
+                    )
+                } catch (ex: NullPointerException) {
+                    showAndHideWeatherDetails(Constants.HIDE, Constants.SHOW)
+                    responseManager.failed(getString(R.string.error_weather_details_gps_problem))
+                }
+            }
+    }
 }

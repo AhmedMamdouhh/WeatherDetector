@@ -29,7 +29,7 @@ class Weather : BaseObservable() {
         }
 
     @get:Bindable
-    var weatherTemperature: Double = 0.0
+    var weatherTemperature: Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.weatherTemperature)
@@ -54,6 +54,13 @@ class Weather : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.weatherWindSpeed)
+        }
+
+    @get:Bindable
+    var weatherFeelsLike: Int = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.weatherFeelsLike)
         }
 
     @get:Bindable

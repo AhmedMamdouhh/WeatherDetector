@@ -5,7 +5,7 @@ import retrofit2.Response
 
 interface WeatherGateway {
     suspend fun requestWeatherDetails(
-        latitude: String,
-        longitude: String
+        latitude: Double,
+        longitude: Double
     ): Response<WeatherDTO>
 }
